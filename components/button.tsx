@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { MouseEventHandler } from "react";
 
@@ -20,7 +21,11 @@ const Button = ({
     <button
       disabled={disabled}
       type={"button"}
-      className={"custom-btn" + containerStyles}
+      className={cn(
+        "custom-btn",
+        disabled ? "opacity-50" : "",
+        containerStyles
+      )}
       onClick={() => {}}
     >
       <span className={"flex-1"}>{title}</span>
