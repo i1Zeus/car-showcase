@@ -24,6 +24,11 @@ const Hero = () => {
           disabled={false}
         />
       </div>
+      <div className="hero__image-container">
+        <div className="hero__image">
+          <Image />
+        </div>
+      </div>
     </div>
   );
 };
