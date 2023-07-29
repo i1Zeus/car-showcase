@@ -6,27 +6,25 @@ import { MouseEventHandler } from "react";
 
 interface ButtonProps {
   title: string;
-  disabled: boolean;
-  containerStyles?: string;
-  handleCLick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+  className?: string;
+  type?: "button" | "submit";
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button = ({
   title,
   disabled,
-  containerStyles,
-  handleCLick,
+  className,
+  type,
+  handleClick,
 }: ButtonProps) => {
   return (
     <button
       disabled={disabled}
-      type={"button"}
-      className={cn(
-        "custom-btn",
-        disabled ? "opacity-50" : "",
-        containerStyles
-      )}
-      onClick={() => {}}
+      type={type || "button"}
+      className={cn("custom-btn", disabled ? "opacity-50" : "", className)}
+      onClick={() => handleClick}
     >
       <span className={"flex-1"}>{title}</span>
     </button>
