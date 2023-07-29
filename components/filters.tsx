@@ -1,9 +1,13 @@
-import React from 'react'
-
-const Filters = () => {
-  return (
-    <div>Filters</div>
-  )
+interface filtersProps {
+  title: string;
 }
 
-export default Filters
+const Filters = ({ title }: filtersProps) => {
+  return (
+    <div>
+      {title}
+    </div>
+  );
+};
+
+export default Filters;
