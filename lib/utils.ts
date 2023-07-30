@@ -13,7 +13,7 @@ export async function fetchCars() {
   };
 
   const response = await fetch(
-    "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla",
+    "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3",
     {
       headers: headers,
     }
@@ -49,7 +49,7 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   url.searchParams.append("modelFamily", model.split(" ")[0]);
   url.searchParams.append("zoomType", "fullscreen");
   url.searchParams.append("modelYear", `${year}`);
-  // url.searchParams.append('zoomLevel', zoomLevel);
+  //// url.searchParams.append('zoomLevel', zoomLevel);
   url.searchParams.append("angle", `${angle}`);
 
   return `${url}`;
