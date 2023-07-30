@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SearchManufacturer from "./searchManufacturer";
+import SearchManufacturer from "./search-manufacturer";
 
 const Search = () => {
   const [manufacturer, setManufacturer] = useState("");

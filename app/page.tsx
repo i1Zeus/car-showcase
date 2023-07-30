@@ -1,8 +1,15 @@
+import CarCard from "@/components/car-card";
 import Filters from "@/components/filters";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
+import { fetchCars } from "@/lib/utils";
 
-export default function Home() {
+export default async function Home() {
+  const allCars = await fetchCars();
+
+  const isEmpty = !Array.isArray(allCars) || !allCars.length || !allCars;
+
+  // console.log(allCars);
   return (
     <main className="overflow-hidden ">
       <Hero />
@@ -18,6 +25,20 @@ export default function Home() {
             <Filters title="year" />
           </div>
         </div>
+
+        {!isEmpty ? (
+          <section>
+            <div className="home__cars-wrapper">
+              {allCars?.map((car) => (
+                <CarCard car={car} />
+              ))}
+            </div>
+          </section>
+        ) : (
+          <div className="home__error-container">
+            <h2 className="text-black text-2xl font-bold">Oops no results</h2>
+          </div>
+        )}
       </div>
     </main>
   );
