@@ -26,7 +26,7 @@ const Button = ({
       disabled={disabled}
       type={type || "button"}
       className={cn("custom-btn", disabled ? "opacity-50" : "", className)}
-      onClick={() => handleClick}
+      onClick={handleClick}
     >
       <span className={"flex-1"}>{title}</span>
       {rightIcon && (
