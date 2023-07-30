@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import SearchManufacturer from "./search-manufacturer";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const SearchButton = ({ className }: { className: string }) => (
   <button type="submit" className={cn("-ml-3 z-10", className)}>
@@ -20,10 +21,34 @@ const SearchButton = ({ className }: { className: string }) => (
 const Search = () => {
   const [manufacturer, setManufacturer] = useState("");
   const [modal, setModal] = useState("");
+  const router = useRouter();
 
-  const handleSubmit = () => {};
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (manufacturer === "" || modal === "")
+      return alert("Please fill all fields");
+
+    updateSearchParams(modal.toLowerCase(), manufacturer.toLowerCase());
+  };
+
+  const updateSearchParams = (modal: string, manufacturer: string) => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (modal) searchParams.set("modal", modal);
+    else searchParams.delete("modal");
+
+    if (manufacturer) searchParams.set("manufacturer", manufacturer);
+    else searchParams.delete("manufacturer");
+
+    const newParamsName = `${
+      window.location.pathname
+    }?${searchParams.toString()}`;
+
+    router.push(newParamsName);
+  };
   return (
-    <form className="searchBar" onSubmit={handleSubmit}>
+    <form className="searchBar" onSubmit={handleSearch}>
       <div className="searchBar__item">
         <SearchManufacturer
           manufacturer={manufacturer}
