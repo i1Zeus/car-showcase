@@ -80,7 +80,7 @@ const CarCard = ({ car }: CarCardProps) => {
             title="View More"
             className="w-full py-[16px] rounded-full bg-primary-blue text-white leading-[14px] font-bold"
             rightIcon="/right-arrow.svg"
-            handleClick={() => setIsOpen(!isOpen)}
+            handleClick={() => setIsOpen(true)}
           />
         </div>
       </div>
