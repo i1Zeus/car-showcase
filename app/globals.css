@@ -195,8 +195,8 @@
   @apply flex-1 max-sm:w-full flex justify-start items-center relative;
 }
 
-.searchbar__input {
-  @apply w-full h-[48px] pl-12 p-4 bg-light-white rounded-r-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+.searchBar__input {
+  @apply w-full h-[48px] pl-12 p-4 bg-light-white rounded-r-full max-sm:rounded-full outline-none cursor-text text-sm;
 }
 /* END: searchBar styles */
 
