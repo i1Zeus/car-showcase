@@ -69,7 +69,7 @@ const SearchManufacturer = ({
                       <>
                         <span
                           className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
+                            selected ? " font-bold" : "font-normal"
                           }`}
                         >
                           {item}
