@@ -2,8 +2,10 @@ import CarCard from "@/components/car-card";
 import Filters from "@/components/filters";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
+import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/lib/utils";
 
+// @ts-ignore
 export default async function Home({ searchParams }) {
   const allCars = await fetchCars({
     manufacturer: searchParams?.manufacturer || "",
@@ -15,7 +17,6 @@ export default async function Home({ searchParams }) {
 
   const isEmpty = !Array.isArray(allCars) || !allCars.length || !allCars;
 
-  // console.log(allCars);
   return (
     <main className="overflow-hidden ">
       <Hero />
@@ -27,8 +28,8 @@ export default async function Home({ searchParams }) {
         <div className="home__filters">
           <Search />
           <div className="home__filter-container">
-            <Filters title="fuel" />
-            <Filters title="year" />
+            <Filters title="fuel" options={fuels} />
+            <Filters title="year" options={yearsOfProduction} />
           </div>
         </div>
 
