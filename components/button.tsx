@@ -9,6 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   type?: "button" | "submit";
+  rightIcon?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -17,6 +18,7 @@ const Button = ({
   disabled,
   className,
   type,
+  rightIcon,
   handleClick,
 }: ButtonProps) => {
   return (
@@ -27,6 +29,11 @@ const Button = ({
       onClick={() => handleClick}
     >
       <span className={"flex-1"}>{title}</span>
+      {rightIcon && (
+        <div className="relative w-6 h-6">
+          <Image src={rightIcon} fill priority alt="right icon" />
+        </div>
+      )}
     </button>
   );
 };
