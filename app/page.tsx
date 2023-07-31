@@ -2,6 +2,7 @@ import CarCard from "@/components/car-card";
 import Filters from "@/components/filters";
 import Hero from "@/components/hero";
 import Search from "@/components/search";
+import ShowMore from "@/components/show-more";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/lib/utils";
 
@@ -40,6 +41,7 @@ export default async function Home({ searchParams }) {
                 <CarCard car={car} />
               ))}
             </div>
+            <ShowMore />
           </section>
         ) : (
           <div className="home__error-container">
