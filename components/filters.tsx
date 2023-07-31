@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import { Fragment, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Listbox, Transition } from "@headlessui/react";
-import { updateSearchParams } from "@/lib/utils";
 
 interface OptionsProps {
   title: string;
