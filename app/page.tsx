@@ -1,3 +1,5 @@
+"use client";
+
 import CarCard from "@/components/car-card";
 import Filters from "@/components/filters";
 import Hero from "@/components/hero";
@@ -5,16 +7,42 @@ import Search from "@/components/search";
 import ShowMore from "@/components/show-more";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/lib/utils";
+import { useEffect, useState } from "react";
 
 // @ts-ignore
-export default async function Home({ searchParams }) {
-  const allCars = await fetchCars({
-    manufacturer: searchParams?.manufacturer || "",
-    year: searchParams?.year || 2022,
-    fuel: searchParams?.fuel || "",
-    limit: searchParams?.limit || 10,
-    model: searchParams?.model || "",
-  });
+export default function Home() {
+  const [allCars, setAllCars] = useState([]);
+
+  const [loading, setLoading] = useState(false);
+
+  const [manufacturer, setManufacturer] = useState("");
+  const [model, setModel] = useState("");
+  const [fuel, setFuel] = useState("");
+  const [year, setYear] = useState(2022);
+  const [limit, setLimit] = useState(10);
+
+  const getCars = async () => {
+    try {
+      setLoading(true);
+      const results = await fetchCars({
+        manufacturer: manufacturer || "",
+        year: year || 2022,
+        fuel: fuel || "",
+        limit: limit || 10,
+        model: model || "",
+      });
+
+      setAllCars(results);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getCars();
+  }, [manufacturer, model, fuel, year, limit]);
 
   const isEmpty = !Array.isArray(allCars) || !allCars.length || !allCars;
 
@@ -42,8 +70,8 @@ export default async function Home({ searchParams }) {
               ))}
             </div>
             <ShowMore
-              pageNumber={(searchParams.limit || 10) / 10}
-              isNext={(searchParams.limit || 10) < allCars.length}
+              pageNumber={(limit || 10) / 10}
+              isNext={(limit || 10) < allCars.length}
             />
           </section>
         ) : (
