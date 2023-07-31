@@ -7,6 +7,7 @@ import Search from "@/components/search";
 import ShowMore from "@/components/show-more";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/lib/utils";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 // @ts-ignore
@@ -44,7 +45,7 @@ export default function Home() {
     getCars();
   }, [manufacturer, model, fuel, year, limit]);
 
-  const isEmpty = !Array.isArray(allCars) || !allCars.length || !allCars;
+  const isEmpty = allCars.length === 0;
 
   return (
     <main className="overflow-hidden ">
@@ -55,10 +56,14 @@ export default function Home() {
           <p>Explore cars you might like</p>
         </div>
         <div className="home__filters">
-          <Search />
+          <Search setManufacturer={setManufacturer} setModel={setModel} />
           <div className="home__filter-container">
-            <Filters title="fuel" options={fuels} />
-            <Filters title="year" options={yearsOfProduction} />
+            <Filters title="fuel" options={fuels} setFilter={setFuel} />
+            <Filters
+              title="year"
+              options={yearsOfProduction}
+              setFilter={setYear}
+            />
           </div>
         </div>
 
@@ -69,9 +74,21 @@ export default function Home() {
                 <CarCard car={car} />
               ))}
             </div>
+            {loading && (
+              <div className="mt-16 w-full flex-center">
+                <Image
+                  src="/loader.svg"
+                  alt="loader"
+                  width={50}
+                  height={50}
+                  className="object-contain"
+                />
+              </div>
+            )}
             <ShowMore
-              pageNumber={(limit || 10) / 10}
-              isNext={(limit || 10) < allCars.length}
+              pageNumber={limit / 10}
+              isNext={limit > allCars.length}
+              setLimit={setLimit}
             />
           </section>
         ) : (
