@@ -17,8 +17,12 @@ const SearchButton = ({ className }: { className: string }) => (
   </button>
 );
 
-// @ts-ignore
-const Search = ({ setManufacturer, setModel }) => {
+interface SearchProps {
+  setManufacturer: (manufacturer: string) => void;
+  setModel: (model: string) => void;
+}
+
+const Search = ({ setManufacturer, setModel }: SearchProps) => {
   const [searchManufacturer, setSearchManufacturer] = useState("");
   const [SearchModel, setSearchModel] = useState("");
 
