@@ -52,15 +52,12 @@ export default function Home() {
       <Hero />
       <div id="discover" className="mt-12 padding-x padding-y max-width">
         <div className="home__text-container">
-          {/* header of the page */}
           <h1 className="text-4xl font-extrabold">Car Catalog</h1>
           <p>Explore cars you might like</p>
         </div>
         <div className="home__filters">
-          {/* Search component */}
           <Search setManufacturer={setManufacturer} setModel={setModel} />
           <div className="home__filter-container">
-            {/* Filters */}
             <Filters title="fuel" options={fuels} setFilter={setFuel} />
             <Filters
               title="year"
