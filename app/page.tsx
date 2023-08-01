@@ -10,7 +10,7 @@ import { fetchCars } from "@/lib/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// @ts-ignore
+
 export default function Home() {
   const [allCars, setAllCars] = useState([]);
 
