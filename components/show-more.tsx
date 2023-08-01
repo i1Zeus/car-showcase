@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 interface ShowMoreProps {
   pageNumber: number;
   isNext: boolean;
+  setLimit: any;
 }
 
 const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
