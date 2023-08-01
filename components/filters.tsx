@@ -24,7 +24,7 @@ const Filters = ({ title, options, setFilter }: filtersProps) => {
         value={selected}
         onChange={(e) => {
           setSelected(e);
-          setFilter(e);
+          setFilter(e.value);
         }}
       >
         <div className="relative w-fit z-10">
@@ -50,16 +50,14 @@ const Filters = ({ title, options, setFilter }: filtersProps) => {
                   key={option.value}
                   value={option}
                   className={({ active }) =>
-                    `relative cursor-pointer py-2 px-4 select-none ${
-                      active ? "text-white bg-primary-blue" : "text-gray-900"
+                    `relative cursor-pointer py-2 px-4 select-none ${active ? "text-white bg-primary-blue" : "text-gray-900"
                     }`
                   }
                 >
                   {({ selected }) => (
                     <span
-                      className={`block truncate ${
-                        selected ? "font-semibold" : "font-normal"
-                      }`}
+                      className={`block truncate ${selected ? "font-semibold" : "font-normal"
+                        }`}
                     >
                       {option.title}
                     </span>
